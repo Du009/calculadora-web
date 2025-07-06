@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora Bonitinha</title>
+  <style>
+    /* Fundo e fonte */
+    body {
+      background: linear-gradient(135deg, #fff9c4, #ffe57f);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    /* Container da calculadora */
+    .calculadora {
+      background-color: #fffde7;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+      width: 320px;
+    }
+    /* Display */
+    .display {
+      width: 100%;
+      height: 60px;
+      font-size: 28px;
+      border-radius: 12px;
+      border: 2px solid #fbc02d;
+      padding: 0 15px;
+      margin-bottom: 15px;
+      text-align: right;
+      background-color: #fffde7;
+      box-shadow: inset 2px 2px 5px #fff9c4, inset -2px -2px 5px #fff9c4;
+    }
+    /* Botões */
+    button {
+      width: 65px;
+      height: 60px;
+      margin: 7px 6px;
+      border-radius: 15px;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(251, 192, 45, 0.5);
+      background-color: #fff176;
+      color: #665500;
+      font-weight: bold;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #ffeb3b;
+    }
+    button:active {
+      background-color: #fbc02d;
+      box-shadow: inset 0 4px 8px rgba(251, 192, 45, 0.7);
+    }
+    /* Linha dos botões */
+    .linha-botoes {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculadora">
+    <input type="text" class="display" id="display" readonly />
+
+    <div class="linha-botoes">
+      <button onclick="adicionar('7')">7</button>
+      <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('9')">9</button>
+      <button onclick="adicionar('+')">+</button>
+    </div>
+    <div class="linha-botoes">
+      <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('5')">5</button>
+      <button onclick="adicionar('6')">6</button>
+      <button onclick="adicionar('-')">-</button>
+    </div>
+    <div class="linha-botoes">
+      <button onclick="adicionar('1')">1</button>
+      <button onclick="adicionar('2')">2</button>
+      <button onclick="adicionar('3')">3</button>
+      <button onclick="adicionar('*')">&times;</button>
+    </div>
+    <div class="linha-botoes">
+      <button onclick="limpar()">C</button>
+      <button onclick="adicionar('0')">0</button>
+      <button onclick="calcular()">=</button>
+      <button onclick="adicionar('/')">÷</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function adicionar(valor) {
+      display.value += valor;
+    }
+
+    function limpar() {
+      display.value = '';
+    }
+
+    function calcular() {
+      try {
+        // Substituir símbolos bonitinhos por operadores JS
+        const expressao = display.value.replace(/×/g, '*').replace(/÷/g, '/');
+        const resultado = eval(expressao);
+        display.value = resultado;
+      } catch (e) {
+        alert('Expressão inválida!');
+        display.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
